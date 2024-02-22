@@ -1,15 +1,15 @@
 module Fastlane
   module Actions
     class SetAppEnvironmentAction < Action
-      def self.run(params)
-        if !params[:env]
+      def self.run(options)
+        if !options[:env]
           raise "Environment not provided"
         end
-        sh("jq '{ \"#{params[:env]}\": .#{params[:env]} }' #{params[:env_file_path]} > environments.tmp.json && mv environments.tmp.json #{params[:env_file_path]}")
+        sh("jq '{ \"#{options[:env]}\": .#{options[:env]} }' #{options[:env_file_path]} > environments.tmp.json && mv environments.tmp.json #{options[:env_file_path]}")
       end
 
       def self.description
-        "Set app environment"
+        "Set the environment in the app"
       end
 
       def self.authors
@@ -19,10 +19,10 @@ module Fastlane
       def self.available_options
         [
           FastlaneCore::ConfigItem.new(key: :env,
-                                       description: "Environment",
+                                       description: "The environment",
                                        optional: false),
           FastlaneCore::ConfigItem.new(key: :env_file_path,
-                                       description: "Path to environment file",
+                                       description: "Path to the environment file",
                                        optional: false)
         ]
       end
