@@ -16,7 +16,7 @@ describe Fastlane::Actions::SetAppEnvironmentAction do
       }
 
       # Expecting the sh method to be called with the correct jq command
-      expect(Fastlane::Actions).to receive(:sh).with("jq '{ \"test_env\": .test_env }' path/to/env_file > environments.tmp.json && mv environments.tmp.json path/to/env_file")
+      expect(Fastlane::Actions).to receive(:sh).with("jq '{ \"test_env\": .test_env }' path/to/env_file > path/to/env_file.tmp && mv path/to/env_file.tmp path/to/env_file")
 
       # Calling the run method of the action
       Fastlane::Actions::SetAppEnvironmentAction.run(params)
