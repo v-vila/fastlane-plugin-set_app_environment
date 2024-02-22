@@ -3,7 +3,6 @@ require 'fastlane_core'
 
 require_relative '../helper/set_app_environment_helper'
 
-
 module Fastlane
   module Actions
     class SetAppEnvironmentAction < Action
